@@ -12,11 +12,12 @@ class Album extends Component {
     this.state ={
       album: album,
       currentSong: album.songs[0],
-      isPlaying: false
+      isPlaying: false,
+      hover: null
     };
 
     this.audioElement = document.createElement('audio');
-    this.audioElement.src = album.songs[0].audioSrc
+    this.audioElement.src = album.songs[0].audioSrc;
   }
 
   play() {
@@ -44,6 +45,25 @@ class Album extends Component {
     }
   }
 
+  setTrackDisplay(song, i) {
+    const isSameSong = this.state.currentSong === song;
+    if ((this.state.hover === song && !isSameSong) || (!this.state.isPlaying && isSameSong)) {
+      return <span className='ion-md-play'></span>
+    } else if (this.state.isPlaying && isSameSong) {
+      return <span className='ion-md-pause'></span>
+    } else {
+      return i + 1;
+    }
+  }
+
+  handleMouseEnter(song) {
+    this.setState({ hover: song });
+  }
+
+  handleMouseLeave(song) {
+    this.setState({ hover: null });
+  }
+
   render() {
     return (
       <section className="album">
@@ -63,8 +83,11 @@ class Album extends Component {
           </colgroup>
           <tbody>
             {this.state.album.songs.map( (song, trackNumber) =>
-              <tr className="song" key={song.title} onClick={() => this.handleSongClick(song)}>
-                <td>{trackNumber + 1}</td>
+              <tr className="song.title" key={song.title}
+                onClick={() => this.handleSongClick(song)}
+                onMouseEnter={() => this.handleMouseEnter(song)}
+                onMouseLeave={() => this.handleMouseLeave(song)}>
+                <td>{this.setTrackDisplay(song, trackNumber)}</td>
                 <td>{song.title}</td>
                 <td>{song.duration}</td>
               </tr>
