@@ -6,6 +6,20 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  color: #ffffff;
+  background-color: #120639;
+}
+
+a {
+  margin: 2px;
+  padding: 2px;
+}
+a:link, a:visited {
+  color: #aaaaaa;
+}
+
+a:hover, a:active {
+  color: #929292;
 }
 
 code {

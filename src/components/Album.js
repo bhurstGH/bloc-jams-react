@@ -150,7 +150,7 @@ class Album extends Component {
           </colgroup>
           <tbody>
             {this.state.album.songs.map( (song, trackNumber) =>
-              <tr className="song.title" key={song.title}
+              <tr className="songtitle" key={song.title}
                 onClick={() => this.handleSongClick(song)}
                 onMouseEnter={() => this.handleMouseEnter(song)}
                 onMouseLeave={() => this.handleMouseLeave(song)}>

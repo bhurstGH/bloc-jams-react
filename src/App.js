@@ -14,10 +14,11 @@ class App extends Component {
             <Link to='/'>Landing</Link>
             <Link to='/library'>Library</Link>
           </nav>
-          <h1>Bloc Jams</h1>
         </header>
         <main>
+          <Route exact path="/" component={Logo} />
           <Route exact path="/" component={Landing} />
+          <Route exact path="/" component={LibraryButton} />
           <Route path="/library" component={Library} />
           <Route path="/album/:slug" component={Album} />
         </main>
@@ -26,4 +27,9 @@ class App extends Component {
   }
 }
 
+const Logo = () => <img className="logo" src="/assets/images/bloc_jams_logo.png" alt="Bloc Jams logo" />;
+
+const LibraryButton = () => (
+  <Link to='library'><button className="library-button" type="button">Go to Library</button></Link>
+)
 export default App;
